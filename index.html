@@ -13,7 +13,7 @@
 
     .header img {
       width: 100%;
-      height: auto; /* FIXED: no more cropping */
+      height: auto;
       display: block;
     }
 
@@ -97,14 +97,14 @@
   <div class="item">
     <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2929.jpeg">
     <h3>Football Legends Coin Set</h3>
-    <p>£95</p> <!-- UPDATED -->
+    <p>£95</p>
     <button onclick="addToCart('Football Legends Coin Set', 95)">Add to Cart</button>
   </div>
 
   <div class="item">
     <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2730.jpeg">
     <h3>Vintage Silver Cutlery</h3>
-    <p>£300</p> <!-- UPDATED -->
+    <p>£300</p>
     <button onclick="addToCart('Vintage Silver Cutlery', 300)">Add to Cart</button>
   </div>
 
@@ -147,7 +147,7 @@ function checkout() {
   let items = cart.map(item => item.name).join(", ");
 
   let url = "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick" +
-            "&business=j420ake" +
+            "&business=j.bw420@icloud.com" +
             "&item_name=" + encodeURIComponent(items) +
             "&amount=" + total +
             "&currency_code=GBP";
