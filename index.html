@@ -11,7 +11,6 @@
       background: #ede0c8;
     }
 
-    /* HEADER */
     .header img {
       width: 100%;
       height: 180px;
@@ -20,11 +19,9 @@
 
     h2 {
       text-align: center;
-      margin: 15px 0;
       color: #3b2f2f;
     }
 
-    /* SHOP GRID */
     .shop {
       display: grid;
       grid-template-columns: 1fr;
@@ -32,13 +29,11 @@
       padding: 15px;
     }
 
-    /* PRODUCT CARD */
     .item {
       background: #fffaf3;
       padding: 15px;
       border-radius: 12px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
     .item img {
@@ -48,35 +43,17 @@
       border-radius: 10px;
     }
 
-    .item h3 {
-      margin: 10px 0 5px;
-      color: #2d2d2d;
-    }
-
-    .item p {
-      font-weight: bold;
-      font-size: 18px;
-      color: #5a4634;
-    }
-
-    /* BUTTON */
     button {
       width: 100%;
       background: #3b2f2f;
-      color: #fff;
+      color: white;
       padding: 14px;
       border: none;
       border-radius: 8px;
       margin-top: 10px;
       font-size: 16px;
-      cursor: pointer;
     }
 
-    button:hover {
-      background: #2a1f1f;
-    }
-
-    /* CART */
     .cart {
       position: fixed;
       top: 10px;
@@ -85,26 +62,25 @@
       color: white;
       padding: 10px 15px;
       border-radius: 20px;
-      z-index: 1000;
     }
 
-    .cart-box {
+    .section {
       background: #fffaf3;
       margin: 15px;
       padding: 15px;
       border-radius: 12px;
     }
 
-    @media (min-width: 768px) {
-      .shop {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 800px;
-        margin: auto;
-      }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
 
-      .header img {
-        height: 250px;
-      }
+    .hidden {
+      display: none;
     }
   </style>
 </head>
@@ -120,6 +96,8 @@
 </div>
 
 <h2>Shop</h2>
+
+<div id="shop-page">
 
 <div class="shop">
 
@@ -139,11 +117,27 @@
 
 </div>
 
-<div class="cart-box">
+<div class="section">
   <h3>Your Cart</h3>
   <ul id="cart-items"></ul>
   <p><strong>Total: £<span id="total">0</span></strong></p>
-  <button onclick="checkout()">Checkout</button>
+  <button onclick="goToCheckout()">Checkout</button>
+</div>
+
+</div>
+
+<!-- CHECKOUT PAGE -->
+<div id="checkout-page" class="hidden section">
+  <h2>Checkout</h2>
+
+  <input id="name" placeholder="Full Name">
+  <input id="email" placeholder="Email">
+  <input id="address" placeholder="Shipping Address">
+
+  <p><strong>Total: £<span id="checkout-total">0</span></strong></p>
+
+  <button onclick="payNow()">Pay with PayPal</button>
+  <button onclick="goBack()">Back to Shop</button>
 </div>
 
 <script>
@@ -175,15 +169,26 @@ function updateCart() {
   document.getElementById("cart-count").innerText = cart.reduce((a, b) => a + b.qty, 0);
 }
 
-function checkout() {
-  let url = "https://www.paypal.com/cgi-bin/webscr?cmd=_cart&upload=1&business=j.bw420@icloud.com&currency_code=GBP";
+function goToCheckout() {
+  document.getElementById("shop-page").classList.add("hidden");
+  document.getElementById("checkout-page").classList.remove("hidden");
+  document.getElementById("checkout-total").innerText = document.getElementById("total").innerText;
+}
 
-  cart.forEach((item, index) => {
-    let i = index + 1;
-    url += "&item_name_" + i + "=" + encodeURIComponent(item.name);
-    url += "&amount_" + i + "=" + item.price;
-    url += "&quantity_" + i + "=" + item.qty;
-  });
+function goBack() {
+  document.getElementById("checkout-page").classList.add("hidden");
+  document.getElementById("shop-page").classList.remove("hidden");
+}
+
+function payNow() {
+  let total = document.getElementById("checkout-total").innerText;
+  let items = cart.map(item => item.name + " x" + item.qty).join(", ");
+
+  let url = "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick" +
+            "&business=j.bw420@icloud.com" +
+            "&item_name=" + encodeURIComponent(items) +
+            "&amount=" + total +
+            "&currency_code=GBP";
 
   window.location.href = url;
 }
