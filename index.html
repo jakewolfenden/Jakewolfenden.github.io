@@ -4,108 +4,119 @@
   <title>The Collectable Habit Co.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="https://js.stripe.com/v3/"></script>
+  <!-- STRIPE BUY BUTTON (LOAD ONCE ONLY) -->
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
   <style>
-    body { margin:0; font-family:Arial; background:#ede0c8; }
-    .shop { padding:15px; display:grid; gap:15px; }
-    .item { background:#fffaf3; padding:15px; border-radius:10px; text-align:center; }
-    button { width:100%; padding:12px; background:#3b2f2f; color:#fff; border:none; border-radius:8px; }
-    .section { margin:15px; padding:15px; background:#fffaf3; border-radius:10px; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ede0c8;
+    }
+
+    .header img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    h1 {
+      text-align: center;
+      color: #3b2f2f;
+      margin-top: 15px;
+    }
+
+    .shop {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 15px;
+    }
+
+    .item {
+      background: #fffaf3;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .price {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #3b2f2f;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #3b2f2f;
+      font-size: 14px;
+    }
   </style>
 </head>
 
 <body>
 
-<h2>Shop</h2>
+<!-- HEADER -->
+<div class="header">
+  <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/25B116EB-0D08-4475-A8F3-DF62EE84436B.png">
+</div>
 
+<h1>The Collectable Habit Co.</h1>
+
+<!-- SHOP -->
 <div class="shop">
+
+  <!-- COINS -->
   <div class="item">
+    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2929.jpeg">
     <h3>Football Legends Coin Set</h3>
-    <p>£95</p>
-    <button onclick="addToCart('Coin Set', 95)">Add</button>
+    <p class="price">£95</p>
+
+    <stripe-buy-button
+      buy-button-id="buy_btn_1TCSbYCQUq7MGjotNSV1rM9Y"
+      publishable-key="pk_test_51TCS6zCQUq7MGjotx7XODIgkbLkwYg4woHfUD8fFTxvJx3Tcf56ozaXwENm9y5ukBzs80sjWf1T9bHQAiuWX3Xhl00RN4Hodm5">
+    </stripe-buy-button>
   </div>
 
+  <!-- CUTLERY -->
   <div class="item">
+    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2730.jpeg">
     <h3>Vintage Silver Cutlery</h3>
-    <p>£300</p>
-    <button onclick="addToCart('Cutlery', 300)">Add</button>
+    <p class="price">£300</p>
+
+    <stripe-buy-button
+      buy-button-id="buy_btn_1TCSekCQUq7MGjotbprn9J8Q"
+      publishable-key="pk_test_51TCS6zCQUq7MGjotx7XODIgkbLkwYg4woHfUD8fFTxvJx3Tcf56ozaXwENm9y5ukBzs80sjWf1T9bHQAiuWX3Xhl00RN4Hodm5">
+    </stripe-buy-button>
   </div>
+
+  <!-- BUNDLE / BOTH -->
+  <div class="item">
+    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2929.jpeg">
+    <h3>Coin Set + Cutlery Bundle</h3>
+    <p class="price">Bundle Deal</p>
+
+    <stripe-buy-button
+      buy-button-id="buy_btn_1TCSfeCQUq7MGjotNI5e1zak"
+      publishable-key="pk_test_51TCS6zCQUq7MGjotx7XODIgkbLkwYg4woHfUD8fFTxvJx3Tcf56ozaXwENm9y5ukBzs80sjWf1T9bHQAiuWX3Xhl00RN4Hodm5">
+    </stripe-buy-button>
+  </div>
+
 </div>
 
-<div class="section">
-  <h3>Cart</h3>
-  <ul id="cart"></ul>
-  <p>Total: £<span id="total">0</span></p>
-  <button onclick="checkout()">Checkout</button>
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 The Collectable Habit Co.
 </div>
-
-<script type="module">
-
-// 🔥 STRIPE
-const stripe = Stripe("pk_test_51TCS6zCQUq7MGjotx7XODIgkbLkwYg4woHfUD8fFTxvJx3Tcf56ozaXwENm9y5ukBzs80sjWf1T9bHQAiuWX3Xhl00RN4Hodm5");
-
-// 🔥 FIREBASE (MODERN FIXED)
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBEnNj3GB2JtDwUqKqsGl1GwGl6N3SQw54",
-  authDomain: "collectable-habit.firebaseapp.com",
-  projectId: "collectable-habit",
-  storageBucket: "collectable-habit.firebasestorage.app",
-  messagingSenderId: "149591924509",
-  appId: "1:149591924509:web:d155fa669fd501e6f10bf4"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-// 🛒 CART
-let cart = [];
-
-window.addToCart = function(name, price) {
-  cart.push({name, price});
-  updateCart();
-}
-
-function updateCart() {
-  let list = document.getElementById("cart");
-  let total = 0;
-  list.innerHTML = "";
-
-  cart.forEach(item => {
-    let li = document.createElement("li");
-    li.innerText = item.name + " £" + item.price;
-    list.appendChild(li);
-    total += item.price;
-  });
-
-  document.getElementById("total").innerText = total;
-}
-
-// 🚀 CHECKOUT
-window.checkout = async function() {
-
-  if(cart.length === 0){
-    alert("Cart empty");
-    return;
-  }
-
-  let total = cart.reduce((a,b)=>a+b.price,0);
-
-  // SAVE ORDER 🔥
-  await addDoc(collection(db, "orders"), {
-    items: cart,
-    total: total,
-    created: new Date()
-  });
-
-  // 🔥 REDIRECT TO STRIPE (TEMP)
-  window.location.href = "https://buy.stripe.com/test_6oU14m4cK8Drei3e6U97G02";
-}
-
-</script>
 
 </body>
 </html>
