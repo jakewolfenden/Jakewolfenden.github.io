@@ -4,244 +4,107 @@
   <title>The Collectable Habit Co.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <script src="https://js.stripe.com/v3/"></script>
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #ede0c8;
-    }
-
-    .header img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    h2 {
-      text-align: center;
-      color: #3b2f2f;
-    }
-
-    .shop {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 15px;
-      padding: 15px;
-    }
-
-    .item {
-      background: #fffaf3;
-      padding: 15px;
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .item img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    button {
-      width: 100%;
-      background: #3b2f2f;
-      color: white;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      margin-top: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .cart {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: #3b2f2f;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 20px;
-    }
-
-    .section {
-      background: #fffaf3;
-      margin: 15px;
-      padding: 15px;
-      border-radius: 12px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-
-    .remove-btn {
-      background: red;
-      margin-top: 5px;
-      padding: 6px;
-      font-size: 12px;
-    }
-
-    .hidden {
-      display: none;
-    }
+    body { margin:0; font-family:Arial; background:#ede0c8; }
+    .shop { padding:15px; display:grid; gap:15px; }
+    .item { background:#fffaf3; padding:15px; border-radius:10px; text-align:center; }
+    button { width:100%; padding:12px; background:#3b2f2f; color:#fff; border:none; border-radius:8px; }
+    .section { margin:15px; padding:15px; background:#fffaf3; border-radius:10px; }
   </style>
 </head>
 
 <body>
 
-<div class="cart">
-  Cart (<span id="cart-count">0</span>)
-</div>
-
-<div class="header">
-  <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/25B116EB-0D08-4475-A8F3-DF62EE84436B.png">
-</div>
-
 <h2>Shop</h2>
 
-<div id="shop-page">
-
 <div class="shop">
-
   <div class="item">
-    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2929.jpeg">
     <h3>Football Legends Coin Set</h3>
     <p>£95</p>
-    <button onclick="addToCart('Football Legends Coin Set', 95)">Add to Cart</button>
+    <button onclick="addToCart('Coin Set', 95)">Add</button>
   </div>
 
   <div class="item">
-    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2730.jpeg">
     <h3>Vintage Silver Cutlery</h3>
     <p>£300</p>
-    <button onclick="addToCart('Vintage Silver Cutlery', 300)">Add to Cart</button>
+    <button onclick="addToCart('Cutlery', 300)">Add</button>
   </div>
-
 </div>
 
 <div class="section">
-  <h3>Your Cart</h3>
-  <ul id="cart-items"></ul>
-  <p><strong>Total: £<span id="total">0</span></strong></p>
-  <button onclick="goToCheckout()">Checkout</button>
+  <h3>Cart</h3>
+  <ul id="cart"></ul>
+  <p>Total: £<span id="total">0</span></p>
+  <button onclick="checkout()">Checkout</button>
 </div>
 
-</div>
+<script type="module">
 
-<!-- CHECKOUT -->
-<div id="checkout-page" class="hidden section">
-  <h2>Checkout</h2>
+// 🔥 STRIPE
+const stripe = Stripe("pk_test_51TCS6zCQUq7MGjotx7XODIgkbLkwYg4woHfUD8fFTxvJx3Tcf56ozaXwENm9y5ukBzs80sjWf1T9bHQAiuWX3Xhl00RN4Hodm5");
 
-  <input id="name" placeholder="Full Name">
-  <input id="email" placeholder="Email">
-  <input id="address" placeholder="Shipping Address">
+// 🔥 FIREBASE (MODERN FIXED)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-  <h3>Order Summary</h3>
-  <ul id="summary"></ul>
+const firebaseConfig = {
+  apiKey: "AIzaSyBEnNj3GB2JtDwUqKqsGl1GwGl6N3SQw54",
+  authDomain: "collectable-habit.firebaseapp.com",
+  projectId: "collectable-habit",
+  storageBucket: "collectable-habit.firebasestorage.app",
+  messagingSenderId: "149591924509",
+  appId: "1:149591924509:web:d155fa669fd501e6f10bf4"
+};
 
-  <p><strong>Total: £<span id="checkout-total">0</span></strong></p>
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  <button onclick="payNow()">Pay with PayPal</button>
-  <button onclick="goBack()">Back</button>
-</div>
-
-<!-- CONFIRMATION -->
-<div id="confirmation-page" class="hidden section">
-  <h2>Order Confirmed ✅</h2>
-  <p>Thank you for your order!</p>
-  <p>We will process it shortly.</p>
-</div>
-
-<script>
+// 🛒 CART
 let cart = [];
 
-function addToCart(name, price) {
-  let existing = cart.find(item => item.name === name);
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({name, price, qty: 1});
-  }
-  updateCart();
-}
-
-function removeItem(index) {
-  cart.splice(index, 1);
+window.addToCart = function(name, price) {
+  cart.push({name, price});
   updateCart();
 }
 
 function updateCart() {
-  let list = document.getElementById("cart-items");
+  let list = document.getElementById("cart");
   let total = 0;
   list.innerHTML = "";
 
-  cart.forEach((item, index) => {
+  cart.forEach(item => {
     let li = document.createElement("li");
-    li.innerHTML = item.name + " x" + item.qty + " - £" + (item.price * item.qty) +
-      `<br><button class="remove-btn" onclick="removeItem(${index})">Remove</button>`;
+    li.innerText = item.name + " £" + item.price;
     list.appendChild(li);
-    total += item.price * item.qty;
+    total += item.price;
   });
 
   document.getElementById("total").innerText = total;
-  document.getElementById("cart-count").innerText = cart.reduce((a, b) => a + b.qty, 0);
 }
 
-function goToCheckout() {
-  document.getElementById("shop-page").classList.add("hidden");
-  document.getElementById("checkout-page").classList.remove("hidden");
+// 🚀 CHECKOUT
+window.checkout = async function() {
 
-  let summary = document.getElementById("summary");
-  summary.innerHTML = "";
+  if(cart.length === 0){
+    alert("Cart empty");
+    return;
+  }
 
-  cart.forEach(item => {
-    let li = document.createElement("li");
-    li.innerText = item.name + " x" + item.qty;
-    summary.appendChild(li);
+  let total = cart.reduce((a,b)=>a+b.price,0);
+
+  // SAVE ORDER 🔥
+  await addDoc(collection(db, "orders"), {
+    items: cart,
+    total: total,
+    created: new Date()
   });
 
-  document.getElementById("checkout-total").innerText = document.getElementById("total").innerText;
+  // 🔥 REDIRECT TO STRIPE (TEMP)
+  window.location.href = "https://buy.stripe.com/test_6oU14m4cK8Drei3e6U97G02";
 }
 
-function goBack() {
-  document.getElementById("checkout-page").classList.add("hidden");
-  document.getElementById("shop-page").classList.remove("hidden");
-}
-
-function payNow() {
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
-  let address = document.getElementById("address").value;
-  let total = document.getElementById("checkout-total").innerText;
-
-  let items = cart.map(item => item.name + " x" + item.qty).join(", ");
-
-  // EMAIL (opens draft)
-  window.location.href = `mailto:j.bw420@icloud.com?subject=New Order&body=Name: ${name}%0AEmail: ${email}%0AAddress: ${address}%0AItems: ${items}%0ATotal: £${total}`;
-
-  // PAYPAL
-  let url = "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick" +
-            "&business=j.bw420@icloud.com" +
-            "&item_name=" + encodeURIComponent(items) +
-            "&amount=" + total +
-            "&currency_code=GBP";
-
-  setTimeout(() => {
-    window.location.href = url;
-  }, 1000);
-
-  // CONFIRM PAGE
-  setTimeout(() => {
-    document.getElementById("checkout-page").classList.add("hidden");
-    document.getElementById("confirmation-page").classList.remove("hidden");
-  }, 2000);
-}
 </script>
 
 </body>
