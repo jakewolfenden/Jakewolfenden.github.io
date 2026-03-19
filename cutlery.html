@@ -54,6 +54,7 @@
       height:220px;
       object-fit:cover;
       border-radius:10px;
+      cursor:pointer;
     }
 
     .price {
@@ -67,6 +68,30 @@
       color:#6b5b4f;
       margin-top:10px;
       line-height:1.6;
+    }
+
+    /* POPUP */
+    .popup {
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.9);
+      justify-content:center;
+      align-items:center;
+      z-index:999;
+    }
+
+    .popup img {
+      max-width:90%;
+      max-height:90%;
+      border-radius:10px;
+    }
+
+    .popup.active {
+      display:flex;
     }
   </style>
 </head>
@@ -85,8 +110,29 @@
 
 <div class="products">
 
+  <!-- KNIVES (PUT BACK ✅) -->
   <div class="card">
-    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3087.jpeg">
+    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2730.jpeg" onclick="openPopup(this.src)">
+    
+    <h3>Vintage Silver Cutlery Set</h3>
+    
+    <p class="price">£300</p>
+
+    <stripe-buy-button
+      buy-button-id="buy_btn_1TCSekCQUq7MGjotbprn9J8Q"
+      publishable-key="pk_test_51TCS6zCQUq7MGjotx7XODIgkbLkwYg4woHfUD8fFTxvJx3Tcf56ozaXwENm9y5ukBzs80sjWf1T9bHQAiuWX3Xhl00RN4Hodm5">
+    </stripe-buy-button>
+
+    <div class="info">
+      🚚 £5.99 delivery <br>
+      🎁 Free delivery over £100 <br>
+      🔒 Secure checkout
+    </div>
+  </div>
+
+  <!-- SPOONS -->
+  <div class="card">
+    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3087.jpeg" onclick="openPopup(this.src)">
     
     <h3>Silver Plated Australian Spoons</h3>
     
@@ -105,6 +151,22 @@
   </div>
 
 </div>
+
+<!-- POPUP -->
+<div class="popup" id="popup" onclick="closePopup()">
+  <img id="popupImg">
+</div>
+
+<script>
+function openPopup(src) {
+  document.getElementById("popupImg").src = src;
+  document.getElementById("popup").classList.add("active");
+}
+
+function closePopup() {
+  document.getElementById("popup").classList.remove("active");
+}
+</script>
 
 </body>
 </html>
