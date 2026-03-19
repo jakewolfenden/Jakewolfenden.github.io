@@ -4,10 +4,8 @@
   <title>Coins | The Collectable Habit Co.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- STRIPE -->
   <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
-  <!-- FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
   <style>
@@ -17,7 +15,6 @@
       background:#ede0c8;
     }
 
-    /* NAV */
     .nav {
       display:flex;
       justify-content:space-around;
@@ -38,7 +35,6 @@
       margin:20px 0;
     }
 
-    /* PRODUCTS */
     .products {
       display:grid;
       gap:20px;
@@ -72,22 +68,11 @@
       margin-top:10px;
       line-height:1.6;
     }
-
-    .back {
-      text-align:center;
-      margin:20px;
-    }
-
-    .back a {
-      text-decoration:none;
-      color:#3b2f2f;
-    }
   </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <div class="nav">
   <a href="index.html">Home</a>
   <a href="coins.html">Coins</a>
@@ -100,7 +85,6 @@
 
 <div class="products">
 
-  <!-- PRODUCT 1 -->
   <div class="card">
     <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2929.jpeg">
     
@@ -120,30 +104,6 @@
     </div>
   </div>
 
-  <!-- PRODUCT 2 -->
-  <div class="card">
-    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3087.jpeg">
-    
-    <h3>Silver Plated Australian Spoons</h3>
-    
-    <p class="price">£15</p>
-
-    <stripe-buy-button
-      buy-button-id="buy_btn_1TCoiFCQUq7MGjoteQ6m1MwF"
-      publishable-key="pk_test_51TCS6zCQUq7MGjotx7XODIgkbLkwYg4woHfUD8fFTxvJx3Tcf56ozaXwENm9y5ukBzs80sjWf1T9bHQAiuWX3Xhl00RN4Hodm5">
-    </stripe-buy-button>
-
-    <div class="info">
-      🚚 £5.99 delivery <br>
-      🎁 Free delivery over £100 <br>
-      🔒 Secure checkout
-    </div>
-  </div>
-
-</div>
-
-<div class="back">
-  <a href="index.html">← Back to Home</a>
 </div>
 
 </body>
