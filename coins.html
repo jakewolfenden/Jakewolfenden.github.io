@@ -4,8 +4,10 @@
   <title>Coins | The Collectable Habit Co.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- STRIPE -->
   <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
+  <!-- FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
   <style>
@@ -54,6 +56,7 @@
       height:220px;
       object-fit:cover;
       border-radius:10px;
+      cursor:pointer;
     }
 
     .price {
@@ -68,11 +71,36 @@
       margin-top:10px;
       line-height:1.6;
     }
+
+    /* POPUP */
+    .popup {
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.9);
+      justify-content:center;
+      align-items:center;
+      z-index:999;
+    }
+
+    .popup img {
+      max-width:90%;
+      max-height:90%;
+      border-radius:10px;
+    }
+
+    .popup.active {
+      display:flex;
+    }
   </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <div class="nav">
   <a href="index.html">Home</a>
   <a href="coins.html">Coins</a>
@@ -85,8 +113,9 @@
 
 <div class="products">
 
+  <!-- COIN PRODUCT -->
   <div class="card">
-    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2929.jpeg">
+    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2929.jpeg" onclick="openPopup(this.src)">
     
     <h3>Set of 1969 Famous Footballers Texaco Coins</h3>
     
@@ -105,6 +134,22 @@
   </div>
 
 </div>
+
+<!-- IMAGE POPUP -->
+<div class="popup" id="popup" onclick="closePopup()">
+  <img id="popupImg">
+</div>
+
+<script>
+function openPopup(src) {
+  document.getElementById("popupImg").src = src;
+  document.getElementById("popup").classList.add("active");
+}
+
+function closePopup() {
+  document.getElementById("popup").classList.remove("active");
+}
+</script>
 
 </body>
 </html>
