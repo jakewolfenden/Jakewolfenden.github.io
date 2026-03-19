@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The Collectable Habit Co.</title>
+  <title>Contact | The Collectable Habit Co.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- FONT -->
@@ -9,108 +9,90 @@
 
   <style>
     body {
-      margin: 0;
-      font-family: 'Playfair Display', serif;
-      background: #ede0c8;
+      margin:0;
+      font-family:'Playfair Display', serif;
+      background:#ede0c8;
     }
 
     /* NAV */
     .nav {
-      display: flex;
-      justify-content: space-around;
-      background: #000;
-      padding: 15px;
+      display:flex;
+      justify-content:space-around;
+      background:#000;
+      padding:15px;
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index:1000;
     }
 
     .nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      letter-spacing: 1px;
+      color:white;
+      text-decoration:none;
+      font-size:14px;
+      letter-spacing:1px;
     }
 
-    /* HERO */
-    .hero img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
+    h1 {
+      text-align:center;
+      margin:30px 0 10px;
+      color:#3b2f2f;
     }
 
-    .tagline {
-      text-align: center;
-      padding: 20px;
-      font-size: 15px;
-      color: #3b2f2f;
+    .subtitle {
+      text-align:center;
+      font-size:14px;
+      color:#6b5b4f;
+      margin-bottom:30px;
     }
 
-    /* SECTIONS */
-    .section {
-      padding: 40px 20px;
+    /* FORM */
+    .contact-box {
+      background:#fffaf3;
+      margin:20px;
+      padding:25px;
+      border-radius:20px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
     }
 
-    .section + .section {
-      border-top: 1px solid rgba(0,0,0,0.05);
+    input, textarea {
+      width:100%;
+      padding:12px;
+      margin-bottom:15px;
+      border-radius:10px;
+      border:1px solid #ddd;
+      font-family:'Playfair Display', serif;
+      font-size:14px;
     }
 
-    .section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #3b2f2f;
-      font-size: 28px;
-    }
-
-    .grid {
-      display: grid;
-      gap: 25px;
-    }
-
-    .card {
-      background: #fffaf3;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-    }
-
-    .card-content {
-      padding: 20px;
-      text-align: center;
+    textarea {
+      height:120px;
+      resize:none;
     }
 
     .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 28px;
-      background: #000;
-      color: white;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 14px;
-      letter-spacing: 1px;
+      width:100%;
+      padding:14px;
+      background:#000;
+      color:white;
+      border:none;
+      border-radius:30px;
+      font-size:14px;
+      letter-spacing:1px;
+      cursor:pointer;
     }
 
-    /* TRUST */
-    .trust {
-      text-align: center;
-      padding: 30px;
-      font-size: 14px;
-      color: #3b2f2f;
+    .contact-details {
+      text-align:center;
+      margin-top:25px;
+      font-size:14px;
+      color:#3b2f2f;
+      line-height:1.8;
     }
 
-    /* FOOTER */
-    .footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 13px;
-      color: #6b5b4f;
+    .contact-details a {
+      color:#000;
+      text-decoration:none;
+      font-weight:bold;
     }
   </style>
 </head>
@@ -124,79 +106,40 @@
   <a href="cutlery.html">Cutlery</a>
   <a href="furniture.html">Furniture</a>
   <a href="electronics.html">Electronics</a>
+  <a href="contact.html">Contact</a>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-  <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/25B116EB-0D08-4475-A8F3-DF62EE84436B.png">
+<h1>Contact Us</h1>
+
+<div class="subtitle">
+  Have a question or enquiry? Send us a message below.
 </div>
 
-<div class="tagline">
-  Rare • Vintage • Collectable
-</div>
+<div class="contact-box">
 
-<!-- COINS -->
-<div class="section">
-  <h2>Coins</h2>
-  <div class="grid">
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3065.webp">
-      <div class="card-content">
-        <a href="coins.html" class="btn">Shop Coins</a>
-      </div>
-    </div>
+  <!-- FORM -->
+  <form action="mailto:jakeyb12094@gmail.com" method="POST" enctype="text/plain">
+
+    <input type="text" name="Name" placeholder="Your Name" required>
+
+    <input type="email" name="Email" placeholder="Your Email" required>
+
+    <textarea name="Message" placeholder="Your Message..." required></textarea>
+
+    <button class="btn" type="submit">Send Enquiry</button>
+
+  </form>
+
+  <!-- YOUR DETAILS -->
+  <div class="contact-details">
+    <br>
+    Or contact directly:<br><br>
+
+    📧 <a href="mailto:jakeyb12094@gmail.com">jakeyb12094@gmail.com</a><br>
+    📱 07939 159449<br>
+    👤 Jake B Wolfenden
   </div>
-</div>
 
-<!-- CUTLERY -->
-<div class="section">
-  <h2>Cutlery</h2>
-  <div class="grid">
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3060.webp">
-      <div class="card-content">
-        <a href="cutlery.html" class="btn">Shop Cutlery</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- FURNITURE -->
-<div class="section">
-  <h2>Furniture</h2>
-  <div class="grid">
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3061.jpeg">
-      <div class="card-content">
-        <a href="furniture.html" class="btn">Shop Furniture</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ELECTRONICS -->
-<div class="section">
-  <h2>Electronics</h2>
-  <div class="grid">
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3062.jpeg">
-      <div class="card-content">
-        <a href="electronics.html" class="btn">Shop Electronics</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TRUST -->
-<div class="trust">
-  ✔ Secure Checkout • ✔ Fast Dispatch • ✔ UK Seller  
-  <br><br>
-  🚚 £5.99 Delivery • Free over £100
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-  © 2026 The Collectable Habit Co.
 </div>
 
 </body>
