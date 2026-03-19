@@ -15,7 +15,12 @@
       background:#ede0c8;
     }
 
-    .nav { display:flex; justify-content:space-around; background:#000; padding:15px; }
+    .nav {
+      display:flex;
+      justify-content:space-around;
+      background:#000;
+      padding:15px;
+    }
 
     .nav a {
       color:white;
@@ -24,9 +29,17 @@
       letter-spacing:1px;
     }
 
-    h1 { text-align:center; color:#3b2f2f; margin:20px 0; }
+    h1 {
+      text-align:center;
+      color:#3b2f2f;
+      margin:20px 0;
+    }
 
-    .products { display:grid; gap:20px; padding:15px; }
+    .products {
+      display:grid;
+      gap:20px;
+      padding:15px;
+    }
 
     .card {
       background:#fffaf3;
@@ -55,10 +68,6 @@
       margin-top:10px;
       line-height:1.6;
     }
-
-    .back { text-align:center; margin:20px; }
-
-    .back a { text-decoration:none; color:#3b2f2f; }
   </style>
 </head>
 
@@ -75,13 +84,16 @@
 <h1>Cutlery</h1>
 
 <div class="products">
+
   <div class="card">
-    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3060.webp">
-    <h3>Vintage Silver Cutlery</h3>
-    <p class="price">£300</p>
+    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3087.jpeg">
+    
+    <h3>Silver Plated Australian Spoons</h3>
+    
+    <p class="price">£15</p>
 
     <stripe-buy-button
-      buy-button-id="buy_btn_1TCSekCQUq7MGjotbprn9J8Q"
+      buy-button-id="buy_btn_1TCoiFCQUq7MGjoteQ6m1MwF"
       publishable-key="pk_test_51TCS6zCQUq7MGjotx7XODIgkbLkwYg4woHfUD8fFTxvJx3Tcf56ozaXwENm9y5ukBzs80sjWf1T9bHQAiuWX3Xhl00RN4Hodm5">
     </stripe-buy-button>
 
@@ -91,10 +103,7 @@
       🔒 Secure checkout
     </div>
   </div>
-</div>
 
-<div class="back">
-  <a href="index.html">← Back to Home</a>
 </div>
 
 </body>
