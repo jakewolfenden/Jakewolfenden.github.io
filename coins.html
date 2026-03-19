@@ -16,7 +16,12 @@
       background:#ede0c8;
     }
 
-    .nav { display:flex; justify-content:space-around; background:#000; padding:15px; }
+    .nav {
+      display:flex;
+      justify-content:space-around;
+      background:#000;
+      padding:15px;
+    }
 
     .nav a {
       color:white;
@@ -25,9 +30,17 @@
       letter-spacing:1px;
     }
 
-    h1 { text-align:center; color:#3b2f2f; margin:20px 0; }
+    h1 {
+      text-align:center;
+      color:#3b2f2f;
+      margin:20px 0;
+    }
 
-    .products { display:grid; gap:20px; padding:15px; }
+    .products {
+      display:grid;
+      gap:20px;
+      padding:15px;
+    }
 
     .card {
       background:#fffaf3;
@@ -57,14 +70,21 @@
       line-height:1.6;
     }
 
-    .back { text-align:center; margin:20px; }
+    .back {
+      text-align:center;
+      margin:20px;
+    }
 
-    .back a { text-decoration:none; color:#3b2f2f; }
+    .back a {
+      text-decoration:none;
+      color:#3b2f2f;
+    }
   </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <div class="nav">
   <a href="index.html">Home</a>
   <a href="coins.html">Coins</a>
@@ -76,6 +96,8 @@
 <h1>Coins</h1>
 
 <div class="products">
+
+  <!-- ORIGINAL PRODUCT -->
   <div class="card">
     <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3065.webp">
     <h3>Football Legends Coin Set</h3>
@@ -92,6 +114,25 @@
       🔒 Secure checkout
     </div>
   </div>
+
+  <!-- NEW PRODUCT -->
+  <div class="card">
+    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3087.jpeg">
+    <h3>Silver Plated Australian Spoons</h3>
+    <p class="price">£15</p>
+
+    <stripe-buy-button
+      buy-button-id="buy_btn_1TCoiFCQUq7MGjoteQ6m1MwF"
+      publishable-key="pk_test_51TCS6zCQUq7MGjotx7XODIgkbLkwYg4woHfUD8fFTxvJx3Tcf56ozaXwENm9y5ukBzs80sjWf1T9bHQAiuWX3Xhl00RN4Hodm5">
+    </stripe-buy-button>
+
+    <div class="info">
+      🚚 £5.99 delivery <br>
+      🎁 Free delivery over £100 <br>
+      🔒 Secure checkout
+    </div>
+  </div>
+
 </div>
 
 <div class="back">
