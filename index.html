@@ -4,9 +4,6 @@
   <title>The Collectable Habit Co.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- STRIPE -->
-  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-
   <!-- FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
@@ -17,12 +14,16 @@
       background: #ede0c8;
     }
 
-    /* NAV */
+    /* STICKY NAVBAR */
     .nav {
       display: flex;
       justify-content: space-around;
-      background: #000; /* CHANGED TO BLACK */
+      background: #000;
       padding: 15px;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .nav a {
@@ -44,7 +45,6 @@
       padding: 15px;
       font-size: 14px;
       color: #3b2f2f;
-      letter-spacing: 2px;
     }
 
     /* SECTIONS */
@@ -68,11 +68,6 @@
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: scale(1.02);
     }
 
     .card img {
@@ -90,14 +85,13 @@
     .btn {
       display: inline-block;
       margin-top: 10px;
-      padding: 12px 22px;
+      padding: 10px 20px;
       background: #000;
       color: #fff;
-      border-radius: 10px;
+      border-radius: 8px;
       text-decoration: none;
-      font-size: 14px;
       letter-spacing: 1px;
-      transition: 0.2s;
+      transition: 0.3s;
     }
 
     .btn:hover {
@@ -139,21 +133,19 @@
 </div>
 
 <div class="tagline">
-  RARE • VINTAGE • COLLECTABLE
+  Rare • Vintage • Collectable
 </div>
 
 <!-- COINS -->
 <div class="section">
   <h2>Coins</h2>
   <div class="grid">
-
     <div class="card">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3065.webp">
+      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3065.webp">
       <div class="card-content">
         <a href="coins.html" class="btn">Shop Coins</a>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -161,14 +153,12 @@
 <div class="section">
   <h2>Cutlery</h2>
   <div class="grid">
-
     <div class="card">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3060.webp">
+      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3060.webp">
       <div class="card-content">
         <a href="cutlery.html" class="btn">Shop Cutlery</a>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -176,14 +166,12 @@
 <div class="section">
   <h2>Furniture</h2>
   <div class="grid">
-
     <div class="card">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3061.jpeg">
+      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3061.jpeg">
       <div class="card-content">
         <a href="furniture.html" class="btn">Shop Furniture</a>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -191,14 +179,12 @@
 <div class="section">
   <h2>Electronics</h2>
   <div class="grid">
-
     <div class="card">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3062.jpeg">
+      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3062.jpeg">
       <div class="card-content">
         <a href="electronics.html" class="btn">Shop Electronics</a>
       </div>
     </div>
-
   </div>
 </div>
 
