@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact | The Collectable Habit Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin:0;
+      font-family:'Playfair Display', serif;
+      background:#ede0c8;
+    }
+
+    /* NAV */
+    .nav {
+      display:flex;
+      justify-content:space-around;
+      background:#000;
+      padding:15px;
+      position: sticky;
+      top: 0;
+      z-index:1000;
+    }
+
+    .nav a {
+      color:white;
+      text-decoration:none;
+      font-size:14px;
+      letter-spacing:1px;
+    }
+
+    h1 {
+      text-align:center;
+      margin:30px 0 10px;
+      color:#3b2f2f;
+    }
+
+    .subtitle {
+      text-align:center;
+      font-size:14px;
+      color:#6b5b4f;
+      margin-bottom:30px;
+    }
+
+    /* FORM */
+    .contact-box {
+      background:#fffaf3;
+      margin:20px;
+      padding:25px;
+      border-radius:20px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    input, textarea {
+      width:100%;
+      padding:12px;
+      margin-bottom:15px;
+      border-radius:10px;
+      border:1px solid #ddd;
+      font-family:'Playfair Display', serif;
+      font-size:14px;
+    }
+
+    textarea {
+      height:120px;
+      resize:none;
+    }
+
+    .btn {
+      width:100%;
+      padding:14px;
+      background:#000;
+      color:white;
+      border:none;
+      border-radius:30px;
+      font-size:14px;
+      letter-spacing:1px;
+      cursor:pointer;
+    }
+
+    .email-direct {
+      text-align:center;
+      margin-top:20px;
+      font-size:14px;
+    }
+
+    .email-direct a {
+      color:#000;
+      text-decoration:none;
+      font-weight:bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <a href="index.html">Home</a>
+  <a href="coins.html">Coins</a>
+  <a href="cutlery.html">Cutlery</a>
+  <a href="furniture.html">Furniture</a>
+  <a href="electronics.html">Electronics</a>
+</div>
+
+<h1>Contact Us</h1>
+<div class="subtitle">
+  Have a question or enquiry? Send us a message below.
+</div>
+
+<div class="contact-box">
+
+  <!-- FORM (EMAIL OPENS) -->
+  <form action="mailto:youremail@example.com" method="POST" enctype="text/plain">
+
+    <input type="text" name="Name" placeholder="Your Name" required>
+
+    <input type="email" name="Email" placeholder="Your Email" required>
+
+    <textarea name="Message" placeholder="Your Message..." required></textarea>
+
+    <button class="btn" type="submit">Send Enquiry</button>
+
+  </form>
+
+  <div class="email-direct">
+    Or email us directly:<br>
+    <a href="mailto:youremail@example.com">youremail@example.com</a>
+  </div>
+
+</div>
+
+</body>
+</html>
