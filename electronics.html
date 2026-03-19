@@ -17,7 +17,7 @@
       background:#ede0c8;
     }
 
-    /* STICKY NAV */
+    /* NAV */
     .nav {
       display:flex;
       justify-content:space-around;
@@ -77,7 +77,7 @@
       line-height:1.6;
     }
 
-    /* IMAGE POPUP */
+    /* POPUP */
     .popup {
       display:none;
       position:fixed;
@@ -112,22 +112,28 @@
   <a href="cutlery.html">Cutlery</a>
   <a href="furniture.html">Furniture</a>
   <a href="electronics.html">Electronics</a>
+  <a href="contact.html">Contact</a>
 </div>
 
 <h1>Electronics</h1>
 
 <div class="products">
 
-  <!-- PLACEHOLDER PRODUCT -->
+  <!-- PRODUCT -->
   <div class="card">
-    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3062.jpeg" onclick="openPopup(this.src)">
+    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3062.jpeg" onclick="openPopup(this.src)">
     
     <h3>Vintage Electronic Item</h3>
     
     <p class="price">£75</p>
 
     <!-- ADD YOUR STRIPE BUTTON HERE -->
-    <!-- Replace with your real buy button -->
+    <!-- Example:
+    <stripe-buy-button
+      buy-button-id="YOUR_ID"
+      publishable-key="YOUR_KEY">
+    </stripe-buy-button>
+    -->
 
     <div class="info">
       🚚 £5.99 delivery <br>
