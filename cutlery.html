@@ -50,6 +50,7 @@ h1, h2, h3 {
   color:white;
   text-decoration:none;
   font-size:14px;
+  letter-spacing:1px;
 }
 
 h1 {
@@ -69,7 +70,7 @@ h1 {
   border-radius:20px;
 }
 
-/* ✅ FIXED SLIDER */
+/* SLIDER */
 .slider {
   display:flex;
   gap:10px;
@@ -87,7 +88,25 @@ h1 {
   cursor:pointer;
 }
 
-/* PRODUCTS */
+/* DOTS */
+.dots {
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin-top:8px;
+}
+
+.dots span {
+  width:8px;
+  height:8px;
+  background:#c4b7a6;
+  border-radius:50%;
+}
+
+.dots span.active {
+  background:#3b2f2f;
+}
+
 .products {
   display:grid;
   gap:25px;
@@ -116,7 +135,6 @@ h1 {
   font-weight:bold;
 }
 
-/* POPUP */
 .popup {
   display:none;
   position:fixed;
@@ -164,13 +182,20 @@ h1 {
 
 <div class="products">
 
-  <!-- ✅ KNIVES FIXED -->
+  <!-- KNIVES WITH SLIDER -->
   <div class="card">
 
-    <div class="slider">
+    <div class="slider" onscroll="updateDots(this)">
       <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2730.jpeg" onclick="openPopup(this.src)">
       <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2729.jpeg" onclick="openPopup(this.src)">
       <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2731.jpeg" onclick="openPopup(this.src)">
+    </div>
+
+    <!-- DOTS -->
+    <div class="dots">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
     </div>
 
     <h3>Vintage Silver Cutlery Set</h3>
@@ -213,6 +238,19 @@ function openPopup(src) {
 }
 function closePopup() {
   document.getElementById("popup").classList.remove("active");
+}
+
+function updateDots(slider) {
+  const dots = slider.nextElementSibling.children;
+  const index = Math.round(slider.scrollLeft / slider.clientWidth);
+
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].classList.remove("active");
+  }
+
+  if (dots[index]) {
+    dots[index].classList.add("active");
+  }
 }
 </script>
 
