@@ -43,6 +43,18 @@
       margin:30px 0 15px;
     }
 
+    /* HEADER IMAGE */
+    .header-img {
+      padding: 0 20px 20px;
+    }
+
+    .header-img img {
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      border-radius:20px;
+    }
+
     .products {
       display:grid;
       gap:25px;
@@ -114,9 +126,13 @@
 
 <h1>Furniture</h1>
 
+<!-- HEADER IMAGE -->
+<div class="header-img">
+  <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3061.jpeg">
+</div>
+
 <div class="products">
 
-  <!-- PRODUCT -->
   <div class="card">
     <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3061.jpeg" onclick="openPopup(this.src)">
 
@@ -126,14 +142,9 @@
 
     <p style="font-size:13px; color:#8b7d6b;">Only 1 available</p>
     <p style="font-size:13px;">🔒 Secure checkout with Stripe</p>
+    <p style="font-size:13px;">🚚 £5.99 delivery or FREE collection</p>
 
     <!-- ADD YOUR STRIPE BUTTON HERE -->
-    <!--
-    <stripe-buy-button
-      buy-button-id="YOUR_ID"
-      publishable-key="YOUR_KEY">
-    </stripe-buy-button>
-    -->
 
   </div>
 
