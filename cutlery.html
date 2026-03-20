@@ -71,6 +71,28 @@ h1 {
   border-radius:20px;
 }
 
+/* SLIDER */
+.slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.slides img {
+  width: 100%;
+  height:220px;
+  object-fit: cover;
+  border-radius:12px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  cursor:pointer;
+}
+
 .products {
   display:grid;
   gap:25px;
@@ -89,14 +111,6 @@ h1 {
 .card:hover {
   transform:translateY(-4px);
   box-shadow:0 18px 40px rgba(0,0,0,0.12);
-}
-
-.card img {
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:12px;
-  cursor:pointer;
 }
 
 .price {
@@ -146,15 +160,23 @@ h1 {
   <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3060.webp">
 </div>
 
-<!-- SEO TEXT (invisible design change but boosts ranking) -->
 <p style="text-align:center; max-width:700px; margin:auto; font-size:14px; color:#5a4a3f;">
   Browse vintage silver cutlery, antique cutlery sets and collectable spoons for sale in the UK. Each item is unique, with secure checkout, fast delivery and collection available.
 </p>
 
 <div class="products">
 
+  <!-- KNIVES WITH SLIDER -->
   <div class="card">
-    <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2730.jpeg" onclick="openPopup(this.src)">
+
+    <div class="slider">
+      <div class="slides">
+        <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2730.jpeg" onclick="openPopup(this.src)">
+        <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2729.jpeg" onclick="openPopup(this.src)">
+        <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2731.jpeg" onclick="openPopup(this.src)">
+      </div>
+    </div>
+
     <h3>Vintage Silver Cutlery Set</h3>
     <p class="price">£300</p>
     <p style="font-size:13px; color:#8b7d6b;">Only 1 available</p>
@@ -167,6 +189,7 @@ h1 {
     </stripe-buy-button>
   </div>
 
+  <!-- SPOONS -->
   <div class="card">
     <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_3087.jpeg" onclick="openPopup(this.src)">
     <h3>Silver Plated Australian Spoons</h3>
