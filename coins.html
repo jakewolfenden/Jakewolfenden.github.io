@@ -43,10 +43,6 @@ h1, h2, h3 {
   opacity:0.85;
 }
 
-.nav a:hover {
-  opacity:1;
-}
-
 h1 {
   text-align:center;
   color:#3b2f2f;
@@ -87,22 +83,41 @@ h1 {
   box-shadow:0 12px 30px rgba(0,0,0,0.08);
 }
 
+/* ✅ SLIDER FIX */
 .slider {
-  display:flex;
-  overflow-x:auto;
-  gap:10px;
-  scroll-snap-type:x mandatory;
+  position:relative;
+}
+
+.slide {
+  display:none;
+}
+
+.slide.active {
+  display:block;
 }
 
 .slider img {
-  flex:0 0 100%;
-  scroll-snap-align:center;
   width:100%;
   height:220px;
   object-fit:cover;
   border-radius:12px;
   cursor:pointer;
 }
+
+.slider-btn {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.6);
+  color:white;
+  border:none;
+  padding:6px 10px;
+  cursor:pointer;
+  border-radius:6px;
+}
+
+.prev { left:10px; }
+.next { right:10px; }
 
 .price {
   font-size:22px;
@@ -158,16 +173,22 @@ Browse rare coins for sale in the UK including vintage coins, collectible sets a
 
 <div class="products">
 
-  <!-- FOOTBALL COINS WITH SLIDER -->
+  <!-- ✅ FOOTBALL COINS WITH SLIDER -->
   <div class="card">
 
     <div class="slider">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2929.jpeg" onclick="openPopup(this.src)">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2930.jpeg" onclick="openPopup(this.src)">
+      <div class="slide active">
+        <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2929.jpeg" onclick="openPopup(this.src)">
+      </div>
+      <div class="slide">
+        <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2930.jpeg" onclick="openPopup(this.src)">
+      </div>
+
+      <button class="slider-btn prev" onclick="moveSlide(-1)">❮</button>
+      <button class="slider-btn next" onclick="moveSlide(1)">❯</button>
     </div>
 
     <h3>Set of 1969 Famous Footballers Texaco Coins</h3>
-
     <p class="price">£95</p>
 
     <p style="font-size:13px; color:#8b7d6b;">Only 1 available</p>
@@ -178,15 +199,12 @@ Browse rare coins for sale in the UK including vintage coins, collectible sets a
       buy-button-id="buy_btn_1TCSbYCQUq7MGjotNSV1rM9Y"
       publishable-key="pk_test_51TCS6zCQUq7MGjotx7XODIgkbLkwYg4woHfUD8fFTxvJx3Tcf56ozaXwENm9y5ukBzs80sjWf1T9bHQAiuWX3Xhl00RN4Hodm5">
     </stripe-buy-button>
-
   </div>
 
   <!-- SECOND PRODUCT -->
   <div class="card">
     <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3111.jpeg" onclick="openPopup(this.src)">
-
     <h3>4x Printed 50 pence pieces</h3>
-
     <p class="price">£30</p>
 
     <p style="font-size:13px; color:#8b7d6b;">Only 1 available</p>
@@ -201,11 +219,21 @@ Browse rare coins for sale in the UK including vintage coins, collectible sets a
 
 </div>
 
+<!-- POPUP -->
 <div class="popup" id="popup" onclick="closePopup()">
   <img id="popupImg">
 </div>
 
 <script>
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+
+function moveSlide(direction) {
+  slides[currentSlide].classList.remove("active");
+  currentSlide = (currentSlide + direction + slides.length) % slides.length;
+  slides[currentSlide].classList.add("active");
+}
+
 function openPopup(src) {
   document.getElementById("popupImg").src = src;
   document.getElementById("popup").classList.add("active");
