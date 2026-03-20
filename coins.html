@@ -43,6 +43,17 @@
       margin:30px 0 15px;
     }
 
+    .header-img {
+      padding: 0 20px 20px;
+    }
+
+    .header-img img {
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      border-radius:20px;
+    }
+
     .products {
       display:grid;
       gap:25px;
@@ -114,6 +125,11 @@
 
 <h1>Coins</h1>
 
+<!-- HEADER IMAGE -->
+<div class="header-img">
+  <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3065.webp">
+</div>
+
 <div class="products">
 
   <div class="card">
@@ -125,6 +141,7 @@
 
     <p style="font-size:13px; color:#8b7d6b;">Only 1 available</p>
     <p style="font-size:13px;">🔒 Secure checkout with Stripe</p>
+    <p style="font-size:13px;">🚚 £5.99 delivery or FREE collection</p>
 
     <stripe-buy-button
       buy-button-id="buy_btn_1TCSbYCQUq7MGjotNSV1rM9Y"
