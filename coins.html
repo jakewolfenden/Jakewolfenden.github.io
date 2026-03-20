@@ -64,7 +64,6 @@ h1 {
   border-radius:20px;
 }
 
-/* SEO TEXT */
 .seo-text {
   text-align:center;
   max-width:700px;
@@ -74,7 +73,7 @@ h1 {
   padding:0 20px 20px;
 }
 
-/* ✅ SAME SLIDER STYLE */
+/* SLIDER */
 .slider {
   display:flex;
   gap:10px;
@@ -90,6 +89,25 @@ h1 {
   flex:0 0 100%;
   scroll-snap-align:center;
   cursor:pointer;
+}
+
+/* DOTS */
+.dots {
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin-top:8px;
+}
+
+.dots span {
+  width:8px;
+  height:8px;
+  background:#c4b7a6;
+  border-radius:50%;
+}
+
+.dots span.active {
+  background:#3b2f2f;
 }
 
 /* PRODUCTS */
@@ -169,12 +187,18 @@ Browse rare coins for sale in the UK including vintage coins, collectible sets a
 
 <div class="products">
 
-  <!-- ✅ FOOTBALL COINS WITH SLIDER -->
+  <!-- FOOTBALL COINS -->
   <div class="card">
 
-    <div class="slider">
+    <div class="slider" onscroll="updateDots(this)">
       <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2929.jpeg" onclick="openPopup(this.src)">
       <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2930.jpeg" onclick="openPopup(this.src)">
+    </div>
+
+    <!-- DOTS -->
+    <div class="dots">
+      <span class="active"></span>
+      <span></span>
     </div>
 
     <h3>Set of 1969 Famous Footballers Texaco Coins</h3>
@@ -222,6 +246,19 @@ function openPopup(src) {
 }
 function closePopup() {
   document.getElementById("popup").classList.remove("active");
+}
+
+function updateDots(slider) {
+  const dots = slider.nextElementSibling.children;
+  const index = Math.round(slider.scrollLeft / slider.clientWidth);
+
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].classList.remove("active");
+  }
+
+  if (dots[index]) {
+    dots[index].classList.add("active");
+  }
 }
 </script>
 
