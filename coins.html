@@ -11,6 +11,7 @@
 
 <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
+<!-- FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -64,6 +65,7 @@ h1 {
   border-radius:20px;
 }
 
+/* SEO TEXT */
 .seo-text {
   text-align:center;
   max-width:700px;
@@ -87,21 +89,25 @@ h1 {
   box-shadow:0 12px 30px rgba(0,0,0,0.08);
 }
 
-/* ✅ SLIDER FIXED (CONTAINED) */
-.slider {
-  display:flex;
-  overflow-x:auto;
-  gap:10px;
-  scroll-snap-type:x mandatory;
-}
-
-.slider img {
-  flex:0 0 100%;
+.card img {
+  width:100%;
   height:220px;
   object-fit:cover;
   border-radius:12px;
-  scroll-snap-align:center;
   cursor:pointer;
+}
+
+/* ✅ SAFE SLIDER */
+.slider {
+  position:relative;
+}
+
+.slider img {
+  display:none;
+}
+
+.slider img.active {
+  display:block;
 }
 
 .price {
@@ -157,16 +163,15 @@ Browse rare coins for sale in the UK including vintage coins, collectible sets a
 
 <div class="products">
 
-  <!-- ✅ FIXED PRODUCT WITH SLIDER -->
+  <!-- ✅ FIXED PRODUCT -->
   <div class="card">
 
-    <div class="slider">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2929.jpeg" onclick="openPopup(this.src)">
-      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2930.jpeg" onclick="openPopup(this.src)">
+    <div class="slider" onclick="nextSlide(this)">
+      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/main/IMG_2929.jpeg" class="active">
+      <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_2930.jpeg">
     </div>
 
     <h3>Set of 1969 Famous Footballers Texaco Coins</h3>
-
     <p class="price">£95</p>
 
     <p style="font-size:13px; color:#8b7d6b;">Only 1 available</p>
@@ -180,12 +185,11 @@ Browse rare coins for sale in the UK including vintage coins, collectible sets a
 
   </div>
 
-  <!-- NORMAL PRODUCT (UNCHANGED) -->
+  <!-- NORMAL PRODUCT -->
   <div class="card">
     <img src="https://raw.githubusercontent.com/jakewolfenden/Jakewolfenden.github.io/refs/heads/main/IMG_3111.jpeg" onclick="openPopup(this.src)">
 
     <h3>4x Printed 50 pence pieces</h3>
-
     <p class="price">£30</p>
 
     <p style="font-size:13px; color:#8b7d6b;">Only 1 available</p>
@@ -205,10 +209,26 @@ Browse rare coins for sale in the UK including vintage coins, collectible sets a
 </div>
 
 <script>
+function nextSlide(slider) {
+  const images = slider.querySelectorAll("img");
+  let current = 0;
+
+  images.forEach((img, i) => {
+    if (img.classList.contains("active")) {
+      img.classList.remove("active");
+      current = i;
+    }
+  });
+
+  let next = (current + 1) % images.length;
+  images[next].classList.add("active");
+}
+
 function openPopup(src) {
   document.getElementById("popupImg").src = src;
   document.getElementById("popup").classList.add("active");
 }
+
 function closePopup() {
   document.getElementById("popup").classList.remove("active");
 }
