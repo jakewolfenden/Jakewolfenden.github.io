@@ -75,32 +75,27 @@ h1 {
   padding:0 20px 20px;
 }
 
-/* ✅ FIXED SLIDER */
+/* SLIDER */
 .slider {
   overflow:hidden;
 }
 
 .slides {
   display:flex;
-  overflow-x:scroll;
+  overflow-x:auto;
   scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.slides::-webkit-scrollbar {
-  display:none;
 }
 
 .slides img {
-  min-width:100%;
+  width:100%;
   height:220px;
   object-fit:cover;
   border-radius:12px;
-  scroll-snap-align:center;
+  flex-shrink:0;
+  scroll-snap-align:start;
   cursor:pointer;
 }
 
-/* PRODUCTS */
 .products {
   display:grid;
   gap:25px;
@@ -127,7 +122,6 @@ h1 {
   font-weight:bold;
 }
 
-/* POPUP */
 .popup {
   display:none;
   position:fixed;
@@ -175,7 +169,7 @@ Browse rare coins for sale in the UK including vintage coins, collectible sets a
 
 <div class="products">
 
-  <!-- ✅ PRODUCT 1 WITH WORKING SWIPE -->
+  <!-- PRODUCT 1 (NOW SLIDER) -->
   <div class="card">
 
     <div class="slider">
